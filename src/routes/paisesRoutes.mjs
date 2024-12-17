@@ -7,7 +7,7 @@ const router = express.Router();
 // Ruta para la vista del Dashboard
 router.get('/', async (req, res) => {
    // const paises = await PaisesRepository.obtenerTodos();
-    const nameCreador = "Tomas Barros"
+    const nameCreador = "Walter"
     const filtrado = await PaisesRepository.obtenerPorCreador(nameCreador)
     console.log(filtrado)
     res.render('dashboardPaises', { filtrado });

@@ -5,7 +5,7 @@ export async function connectDB() {
     try {
         // Intenta establecer una conexión con MongoDB utilizando la cadena de conexión proporcionada.
         await mongoose.connect(
-            'mongodb+srv://Grupo-16:grupo16@cursadanodejs.ls9ii.mongodb.net/Node-js', {
+            'mongodb+srv://Grupo-08:grupo08@cursadanodejs.ls9ii.mongodb.net/Node-js', {
             useNewUrlParser: true,       // Utiliza el nuevo analizador de URL (evita advertencias).
             useUnifiedTopology: true     // Activa el nuevo motor de administración de conexiones de MongoDB.
         });

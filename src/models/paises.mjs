@@ -41,6 +41,6 @@ const paisSchema = new mongoose.Schema({
         latlng: [Number]
     },
     creador: { type: String, required: true }
-}, { collection: 'Grupo-16' });
+}, { collection: 'Grupo-08' });
 
 export default mongoose.model('Pais', paisSchema);
