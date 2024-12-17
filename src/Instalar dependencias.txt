@@ -1,0 +1,6 @@
+para instalar todo junto
+npm install express@^4.21.1 express-ejs-layouts@^2.5.1 express-validator@^7.2.0 mongoose@^8.8.2 moongose@^1.0.0
+
+npm install axios
+
+npm install ejs express-ejs-layouts

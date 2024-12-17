@@ -1,0 +1,144 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+nav {
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Cambiar a flexbox para mejor comportamiento en móviles */
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+  justify-content: center; /* Centrar los elementos */
+}
+
+nav ul li {
+  margin: 5px; /* Espaciado más pequeño para móviles */
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #f2f2f2;
+  color: #333;
+}
+
+tr:hover {
+  background: #f1f1f1;
+}
+
+tfoot td {
+  font-weight: bold;
+  background: #f9f9f9;
+}
+
+/* button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #c0392b;
+} */
+
+button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;  /* Aumentar el padding */
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;  /* Aumentar el tamaño de la fuente */
+  display: flex;  /* Usar flexbox para centrar el contenido */
+  align-items: center;  /* Centrar verticalmente */
+  transition: background-color 0.3s, transform 0.2s;  /* Añadir una transición */
+}
+
+button:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);  /* Efecto de aumento al pasar el mouse */
+}
+
+button i {
+  margin-right: 8px;  /* Espaciado entre el ícono y el texto */
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background: #333;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column; /* Cambiar la dirección a columna en pantallas pequeñas */
+    align-items: center; /* Centrar los elementos */
+  }
+
+  nav ul li {
+    margin: 10px 0; /* Espaciado vertical para los elementos del menú */
+  }
+
+  table {
+    font-size: 14px; /* Reducir el tamaño de la fuente de la tabla */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px; /* Reducir el tamaño del encabezado */
+  }
+
+  button {
+    width: 100%; /* Hacer que los botones ocupen el ancho completo */
+    padding: 10px; /* Aumentar el padding para mejor usabilidad */
+  }
+}

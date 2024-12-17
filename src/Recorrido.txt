@@ -1,0 +1,12 @@
+Empieza desde app.mjs -> routes -> controller -> services -> repository -> services -> controller -> views
+entrando en la ruta api
+app.use('/api', superHeroRoutes); la cual lleva todas las peticiones hacia el archivo de la carpeta superHeroRoutes
+redireccionando dependiendo la peticion, van a controllers
+router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
+router.get('/heroes', obtenerTodosLosSuperheroesController);
+router.get('/heroes/:id', obtenerSuperheroePorIdController);
+router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
+
+en controllers se llama a la funcion requerida, esperando la respuesta de services
+services espera la respuesta de repository donde esta la logica
+luego manda el resultado de services que le paso repository a views para mostrarla a quien hizo la peticion

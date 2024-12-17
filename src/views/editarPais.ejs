@@ -1,0 +1,76 @@
+
+<h1>Editar País</h1>
+
+ <!-- Mostrar los errores -->
+ <% if (errors.length > 0) { %>
+  <ul style="color: red;">
+      <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
+<% } %>
+
+<form action="/api/editar-pais/<%= datosPais._id %>" method="POST">
+    <label for="official">Nombre Oficial:</label>
+    <input type="text" id="official" name="official" value="<%= datosPais.official %>" required>
+    
+    <label for="capital">Capital:</label>
+    <input type="text" id="capital" name="capital" value="<%= datosPais.capital %>" required>
+    
+    <label for="area">Área:</label>
+    <input type="number" id="area" name="area" step="any" value="<%= datosPais.area %>" required>
+    
+    <label for="population">Población:</label>
+    <input type="number" id="population" name="population" step="any" value="<%= datosPais.population %>" required>
+    
+    <label for="gini">Índice Gini:</label>
+    <input type="text" id="gini" name="gini" value="<%= datosPais.gini ? datosPais.gini[Object.keys(datosPais.gini)[0]] : '' %>">
+    
+    <label for="borders">Fronteras:</label>
+    <input type="text" id="borders" name="borders" value="<%= datosPais.borders %>">
+    
+    <label for="timezones">Zonas Horarias:</label>
+    <input type="text" id="timezones" name="timezones" value="<%= datosPais.timezones%>">
+    
+    <button type="submit">Guardar Cambios</button>
+</form>
+
+
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 2rem; /* Add some margin around the form */
+      }
+      
+      h1 {
+        text-align: center;
+        margin-bottom: 1rem; /* Add some space below the heading */
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 0.5rem; /* Add some space below labels */
+      }
+      
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; /* Ensure padding doesn't affect width */
+      }
+      
+      button[type="submit"] {
+        background-color: #4CAF50; /* Green color for submit button */
+        color: white;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: #3e8e41; /* Darken green on hover */
+      }
+</style>

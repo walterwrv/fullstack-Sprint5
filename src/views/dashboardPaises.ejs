@@ -1,0 +1,96 @@
+  <h1>Países</h1>
+  <input type="text" id="searchBar" placeholder="Buscar pais...">
+  <button style="background-color: #28a745;"><i class="fas fa-plus"></i> <a href="./api/agregar-pais" target="_blank">Agregar Pais</a> </button>
+  <table>
+      <thead>
+          <tr>
+              <th>Nombre Oficial</th>
+              <th>Capital</th>
+              <th>Fronteras</th>
+              <th>Área</th>
+              <th>Población</th>
+              <th>Índice Gini</th>
+              <th>Zonas Horarias</th>
+              <th>Creado por</th>
+              <th>Accciones</th>
+          </tr>
+      </thead>
+      <tbody id="countriesTableBody">
+          <% filtrado.forEach(pais => { %>
+              <tr>
+                  <td><%= pais.name.official %></td>
+                  <td><%= pais.capital.join(', ') %></td>
+                  <td><%= pais.borders.join(', ') || 'N/A' %></td>
+                  <td><%= pais.area %></td>
+                  <td><%= pais.population %></td>
+                  <td><%= pais.gini ? pais.gini[Object.keys(pais.gini)[0]] : 'N/A' %></td>
+                  <td><%= pais.timezones.join(', ') %></td>
+                  <td><%= pais.creador %></td>
+                  <td>
+                    <div style="display: flex; gap: 10px;"> <!-- Usar flex y gap para espacio entre botones -->
+                        <div style="display: flex; gap: 10px;">
+                            <button style="background-color: #e74c3c;" onclick="eliminarPais('<%= pais.id %>')"> <!-- Asumiendo que pais.id es el ID único del país -->
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        <button style="background-color: #3498db;"> <!-- Botón Editar en azul -->
+                            <a href="/api/editar-pais/<%= pais.id %>" target="_blank"><i class="fas fa-edit"> </i></a>
+                        </button>
+                    </div>
+                    
+                </td>
+              </tr>
+          <% }); %>
+      </tbody>
+      <tfoot>
+          <tr>
+              <td colspan="4">Totales:</td>
+              <td><%= filtrado.reduce((acc, pais) => acc + pais.population, 0) %></td>
+              <td><%= filtrado.length ? (filtrado.reduce((acc, pais) => acc + (pais.gini ? pais.gini[Object.keys(pais.gini)[0]] : 0), 0) / filtrado.length).toFixed(2) : 'N/A' %></td>
+              <td colspan="2"></td>
+          </tr>
+      </tfoot>
+  </table>
+
+  <script>
+    // Función para buscar países en la barra de búsqueda
+    document.getElementById('searchBar').addEventListener('input', function () {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#countriesTableBody tr'); // Ahora se selecciona correctamente
+
+        rows.forEach(row => {
+            const countryName = row.querySelector('td').innerText.toLowerCase(); // Obtener el nombre oficial del país
+            row.style.display = countryName.includes(filter) ? '' : 'none'; // Mostrar u ocultar la fila según el filtro
+        });
+    });
+
+    // Función para modificar un héroe 
+    function modificarHeroe(id) {
+      window.location.href = `./editar/${id}`;
+     // alert(`Modificar héroe con ID: ${id}`);
+    }
+
+    // Función para eliminar un pais 
+    function eliminarPais(id) {
+      const confirmar = confirm(`¿Seguro que deseas eliminar el país con ID: ${id}?`);
+      
+      if (confirmar) {
+        // Realizar una solicitud DELETE con fetch
+        fetch(`/api/eliminar-pais/${id}`, {
+                method: 'DELETE',
+            })
+        .then(response => {
+          if (response.ok) {
+            alert(`País con ID ${id} eliminado`);
+            // Recargar la página o eliminar la fila de la tabla
+            location.reload(); // Recargar la página para reflejar los cambios
+                } else {
+                    alert('Hubo un error al eliminar el país');
+                }
+        })
+        .catch(error => {
+          console.error('Error al realizar la solicitud DELETE:', error);
+          alert('Hubo un problema con la solicitud');
+        });
+      }
+    }
+</script>

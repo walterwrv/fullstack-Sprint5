@@ -1,0 +1,61 @@
+<h1>Agregar Nuevo País</h1>
+<form action="/api/agregar-pais" method="POST">
+
+     <!-- Mostrar los errores -->
+     <% if (errors.length > 0) { %>
+        <ul style="color: red;">
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <label for="official">Nombre Oficial:</label>
+    <input type="text" id="official" name="official" value="<%= datosPais.official %>" required>
+    
+    <label for="capital">Capital:</label>
+    <input type="text" id="capital" name="capital" value="<%= datosPais.capital %>" required>
+    
+    <label for="area">Área:</label>
+    <input type="number" id="area" name="area" step="any" value="<%= datosPais.area %>" required>
+    
+    <label for="population">Población:</label>
+    <input type="number" id="population" name="population" step="any" value="<%= datosPais.population %>" required>
+    
+    <label for="gini">Índice Gini:</label>
+    <input type="text" id="gini" name="gini" value="<%= datosPais.gini %>">
+    
+    <label for="borders">Fronteras:</label>
+    <input type="text" id="borders" name="borders" value="<%= datosPais.borders %>">
+    
+    <label for="timezones">Zonas Horarias:</label>
+    <input type="text" id="timezones" name="timezones" value="<%= datosPais.timezones %>">
+    
+    <button type="submit">Agregar País</button>
+</form>
+
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    label, input, button {
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
