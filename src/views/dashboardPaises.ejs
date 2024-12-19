@@ -42,6 +42,8 @@
           <% }); %>
       </tbody>
       <% 
+
+        const totalArea = filtrado.reduce((acc, pais) => acc + pais.area, 0);
         const totalPoblacion = filtrado.reduce((acc, pais) => acc + pais.population, 0);
       
         const totalGini = filtrado.reduce((acc, pais) => {
@@ -56,10 +58,11 @@
       %>
       <tfoot>
           <tr>
-            <td colspan="4">Totales:</td>
+            <td colspan="3">Totales:</td>
+            <td><%= totalArea %></td>
             <td><%= totalPoblacion %></td>
             <td><%= promedioGini %></td>
-            <td colspan="2"></td>
+            <td colspan="3"></td>
           </tr>
       </tfoot>
   </table>
