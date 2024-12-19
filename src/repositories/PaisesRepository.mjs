@@ -22,6 +22,7 @@ class PaisesRepository extends IRepository{
 
     async obtenerPorCreador(nombreCreador) {
         // Filtra los países donde el campo 'creator' coincida con 'nombreCreador'
+        // Y ademas que el campo population exista, esto es para traer solo paises y NO superheroes
         // console.log(nombreCreador)
         return await paises.find({ creador: nombreCreador, population: { $exists: true } });
     }
