@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
    // const paises = await PaisesRepository.obtenerTodos();
     const nameCreador = "Walter"
     const filtrado = await PaisesRepository.obtenerPorCreador(nameCreador)
-    console.log(filtrado)
+    // console.log(filtrado)
     res.render('dashboardPaises', { filtrado });
 });
 

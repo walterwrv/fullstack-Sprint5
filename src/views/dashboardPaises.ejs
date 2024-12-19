@@ -1,6 +1,6 @@
   <h1>Países</h1>
   <input type="text" id="searchBar" placeholder="Buscar pais...">
-  <button style="background-color: #28a745;"><i class="fas fa-plus"></i> <a href="./api/agregar-pais" target="_blank">Agregar Pais</a> </button>
+  <button style="background-color: #28a745;"><i class="fas fa-plus"></i> <a href="./api/agregar-pais" >Agregar Pais</a> </button>
   <table>
       <thead>
           <tr>
@@ -33,7 +33,7 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         <button style="background-color: #3498db;"> <!-- Botón Editar en azul -->
-                            <a href="/api/editar-pais/<%= pais.id %>" target="_blank"><i class="fas fa-edit"> </i></a>
+                            <a href="/api/editar-pais/<%= pais.id %>" ><i class="fas fa-edit"> </i></a>
                         </button>
                     </div>
                     
@@ -41,12 +41,25 @@
               </tr>
           <% }); %>
       </tbody>
+      <% 
+        const totalPoblacion = filtrado.reduce((acc, pais) => acc + pais.population, 0);
+      
+        const totalGini = filtrado.reduce((acc, pais) => {
+          if (pais.gini) {
+            const giniValue = pais.gini[Object.keys(pais.gini)[0]]; // Obtén el valor de Gini
+            return acc + (typeof giniValue === 'number' ? giniValue : 0); // Suma si es número
+          }
+          return acc; // Si no hay gini, suma 0
+        }, 0);
+        const promedioGini = filtrado.length ? (totalGini / filtrado.length).toFixed(2) : 'N/A';
+      
+      %>
       <tfoot>
           <tr>
-              <td colspan="4">Totales:</td>
-              <td><%= filtrado.reduce((acc, pais) => acc + pais.population, 0) %></td>
-              <td><%= filtrado.length ? (filtrado.reduce((acc, pais) => acc + (pais.gini ? pais.gini[Object.keys(pais.gini)[0]] : 0), 0) / filtrado.length).toFixed(2) : 'N/A' %></td>
-              <td colspan="2"></td>
+            <td colspan="4">Totales:</td>
+            <td><%= totalPoblacion %></td>
+            <td><%= promedioGini %></td>
+            <td colspan="2"></td>
           </tr>
       </tfoot>
   </table>

@@ -15,3 +15,9 @@ export async function obtenerPaises() {
         throw error;
     }
 } 
+
+
+export async function importarPaises(){
+    
+    return await PaisesRepository.importCountries();
+}

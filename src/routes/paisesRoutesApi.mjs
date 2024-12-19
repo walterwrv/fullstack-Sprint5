@@ -1,5 +1,6 @@
 import express from 'express';
-import { cargarPaises, paisesEspanol, addPais , editarPaises,  renderPaisEditar, eliminarPais} from '../controllers/paisesApiController.mjs';
+import { cargarPaises, paisesEspanol, addPais , editarPaises,  renderPaisEditar, eliminarPais, importarPaisesController}
+from '../controllers/paisesApiController.mjs';
 
 // Importa las validaciones desde el middleware
 import { 
@@ -14,13 +15,17 @@ import { handleValidationErrors, handleValidationErrorsEditar } from '../validat
 
 const routerApi = express.Router();
 
+routerApi.get('/importar', importarPaisesController);
+
 //cargar todos los países desde la API
 routerApi.get('/cargar-paises', cargarPaises); 
 //filtrar los resultados en paises que hablen español
 routerApi.get('/paises-espaniol', paisesEspanol);
+
+
 //agregar un nuevo país
 routerApi.get('/agregar-pais', (req, res)=>{
-    const datosPais = ""; // la primera vez datosHeroe va vacio
+    const datosPais = ""; // la primera vez datosPais va vacio
     res.render('agregarPais',  {errors: [], datosPais, title: 'agregar superheroe'}) 
 });
 routerApi.post('/agregar-pais', 

@@ -2,7 +2,21 @@ import { obtenerPaises } from '../services/paisesServices.mjs';
 import { renderizarListaPaises } from '../views/responseView.mjs';
 import Pais from '../models/paises.mjs'; // Asegúrate de importar el modelo Pais
 import PaisesRepository from '../repositories/PaisesRepository.mjs';
+import {importarPaises} from "../services/paisesServices.mjs";
 
+
+export async function importarPaisesController(req, res){
+    
+    const paises = await importarPaises();
+    // res.render('paginas/dashboard', {superheroes, title: 'Lista de superheroes'})
+    if(paises){
+        return res.status(200).send({ mensaje: 'Paises importados correctamente' });
+    }else{
+        res.status(404).send({mensaje: 'No se pudo importar paises, ocurrió un error'});
+    }
+    
+    
+}
 //agregar un nuevo país
 export async function addPais(req, res) {
     console.log('Llegó hasta addPais'); // Confirmación básica en la consola del servidor.
@@ -47,7 +61,8 @@ export async function cargarPaises(req, res) {
             const paisConCreador = {
                 ...pais,
                // creador: "Jorge Valeri"  Añadiendo la propiedad "creador"
-                creador: "Tomas Barros" // Añadiendo la propiedad "creador"
+                // creador: "Tomas Barros" // Añadiendo la propiedad "creador"
+                creador: "Walter" // Añadiendo la propiedad "creador"
             };
             try {
                 await Pais.create(paisConCreador); // Guarda el país en la base de datos
@@ -56,7 +71,7 @@ export async function cargarPaises(req, res) {
             }
         }
         //filtrar por nombre de creador
-        const paisesFiltrados= await PaisesRepository.obtenerPorCreador("Tomás Barros")
+        const paisesFiltrados= await PaisesRepository.obtenerPorCreador("Walter")
         res.send(paisesFiltrados)
        // res.send(renderizarListaPaises(paisesFiltrados));
     } catch (error) {
@@ -99,7 +114,7 @@ export async function renderPaisEditar(req, res) {
 }
 
 export async function editarPaises(req, res) {
-        console.log("llego a editar post")
+        // console.log("llego a editar post")
         const { official, capital, area, population, gini, borders, timezones } = req.body;
     
         const paisActualizado = {
