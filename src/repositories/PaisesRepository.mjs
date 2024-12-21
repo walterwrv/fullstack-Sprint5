@@ -71,7 +71,7 @@ class PaisesRepository extends IRepository{
                 flags: country.flags,
                 startOfWeek: country.startOfWeek,
                 capitalInfo: country.capitalInfo,
-                creador: 'Desconocido',
+                creador: 'Walter',
             }));
 
             await paises.insertMany(countries);

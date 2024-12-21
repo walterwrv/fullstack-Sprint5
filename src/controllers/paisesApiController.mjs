@@ -32,7 +32,7 @@ export async function addPais(req, res) {
         gini: gini ? { "0": parseFloat(gini) } : {}, // Convierte "gini" a un número flotante o lo deja vacío.
         borders, // Divide por comas y elimina espacios.
         timezones: timezones ? timezones.split(',').map(t => t.trim()) : [], // Similar a "borders".
-        creador: "Tomas Barros" // Agrega un valor estático para el creador.
+        creador: "Walter" // Agrega un valor estático para el creador.
     };
     try {
         // Intentar guardar el nuevo país en la base de datos usando el modelo "Pais".
